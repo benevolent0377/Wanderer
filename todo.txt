@@ -1,1 +1,3 @@
-BLANK (for now)
+\ make a printout question list optional
++ make the input syntax fuction
++ make the init function under setup.py
