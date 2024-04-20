@@ -82,7 +82,7 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
                     count = 0
 
                     while len(text) > count:
-                        letters = text[count].replace(" ", "_").split
+                        letters = text[count].replace(" ", "_").split()
                         for letter in letters:
                             for char in invChars:
                                 if char == letter:
@@ -95,7 +95,7 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
 
                 else:
 
-                    letters = text.replace(" ", "_").split("")
+                    letters = text.replace(" ", "_").split()
 
                     for letter in letters:
                         for char in invChars:
@@ -115,7 +115,7 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
                     count = 0
 
                     while len(text) > count:
-                        letters = text[count].replace(" ", "_").split
+                        letters = text[count].replace(" ", "_").split()
                         for letter in letters:
                             for char in invChars:
                                 if char == letter:
@@ -127,7 +127,7 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
 
                 else:
 
-                    letters = text.split("")
+                    letters = text.split()
 
                     for letter in letters:
                         for char in invChars:
