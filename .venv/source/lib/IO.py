@@ -1,9 +1,8 @@
 # a file of local inout functions making the process easy and keeping the main file decluttered
-from typing import List
-
+from . import syntax
 
 # simply prints the string output or creates a query in the terminal, also returns the inputted values
-def say(output, isQuestion=False, isLoop=False, syntaxCheck=False, end="\n"):
+def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end="\n",):
     # checking if the program wants a response, aka: question = yes
     if isQuestion:
 
@@ -15,11 +14,18 @@ def say(output, isQuestion=False, isLoop=False, syntaxCheck=False, end="\n"):
             while loopVector > count:   # while the # of questions is greater than the responses, ask a question
                 usrSay.append(input(output[count]))
                 count += 1
-            return usrSay
+
+            if syntaxChk:
+                return syntax.adv(usrSay, synType, isLoop)
+            else:
+                return usrSay
 
         else:
-            return input(output)  # says the output and returns the prompt
 
+            if syntaxChk:
+                return syntax.adv(input(output), synType, isLoop)  # says the output and returns the prompt
+            else:
+                return input(output)
     # if the program does not want a response, aka: not a question
     else:
 
@@ -29,9 +35,15 @@ def say(output, isQuestion=False, isLoop=False, syntaxCheck=False, end="\n"):
             loopVector = len(output)
             while loopVector > count:   # while the number of statements is less than the number already stated, speak
                 # say more
-                print(output[count], end=end)
+                if syntaxChk:
+                    print(syntax.adv(output[count], synType), end=end)
+                else:
+                    print(output[count], end=end)
                 count += 1
 
         # if the program does not want a loop
         else:
-            print(output, end=end)
+            if syntaxChk:
+                print(syntax.adv(output, synType), end=end)
+            else:
+                print(output, end=end)
