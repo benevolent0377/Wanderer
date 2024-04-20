@@ -1,7 +1,7 @@
 # a file of local inout functions making the process easy and keeping the main file decluttered
 from typing import List
 
-
+# simply prints the string output or creates a query in the terminal
 def say(output, isQuestion = False, isLoop = False, end="\n", syntaxCheck = False):
 
     # checking if the program wants a response
@@ -11,9 +11,9 @@ def say(output, isQuestion = False, isLoop = False, end="\n", syntaxCheck = Fals
         if isLoop:
             loopVector = len(output)
             count = 0
-            usrSay = [""]
+            usrSay = []
             while loopVector > count:
-                usrSay[loopVector] = input(output[loopVector])
+                usrSay.append(input(output[count]))
                 count += 1
             return usrSay
 
