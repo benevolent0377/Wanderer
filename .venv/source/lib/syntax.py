@@ -9,7 +9,6 @@ def basic(text, isLoop=False):
         out = []
         count = 0
         while len(text) > count:
-
             out.append(text[count].strip())
             count += 1
         return out
@@ -18,7 +17,7 @@ def basic(text, isLoop=False):
         return text.strip()
 
 
-def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False, regex=False, regexStr=""):
+def adv(text, chk="", isLoop=False, isCustom=False, toLower=False, title=False, regex=False, regexStr=""):
     if isCustom or regex or chk == "custom":
 
         if regex and regexStr != "":
@@ -30,7 +29,6 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
                 while len(text) > count:
 
                     if re.search(regexStr, text) is None:
-
                         err = 1
 
                 if err == 0:

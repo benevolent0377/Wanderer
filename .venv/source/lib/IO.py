@@ -1,8 +1,9 @@
 # a file of local inout functions making the process easy and keeping the main file decluttered
 from . import syntax
 
+
 # simply prints the string output or creates a query in the terminal, also returns the inputted values
-def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end="\n",):
+def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end="\n", ):
     # checking if the program wants a response, aka: question = yes
     if isQuestion:
 
@@ -11,7 +12,7 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
             loopVector = len(output)
             count = 0
             usrSay = []  # this is the returned list
-            while loopVector > count:   # while the # of questions is greater than the responses, ask a question
+            while loopVector > count:  # while the # of questions is greater than the responses, ask a question
                 usrSay.append(input(output[count]))
                 count += 1
 
@@ -33,7 +34,7 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
         if isLoop:
             count = 0
             loopVector = len(output)
-            while loopVector > count:   # while the number of statements is less than the number already stated, speak
+            while loopVector > count:  # while the number of statements is less than the number already stated, speak
                 # say more
                 if syntaxChk:
                     print(syntax.adv(output[count], synType), end=end)
