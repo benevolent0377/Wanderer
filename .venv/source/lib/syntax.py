@@ -82,11 +82,11 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
                     count = 0
 
                     while len(text) > count:
-                        letters = text[count].replace(" ", "_").split()
+                        letters = list(text[count].replace(" ", "_"))
                         for letter in letters:
                             for char in invChars:
-                                if char == letter:
-                                    text = text.replace(letter, "")
+                                if char.__eq__(letter):
+                                    text[count] = text[count].replace(letter, "")
 
                         out.append(text[count])
                         count += 1
@@ -95,11 +95,11 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
 
                 else:
 
-                    letters = text.replace(" ", "_").split()
+                    letters = list(text.replace(" ", "_"))
 
                     for letter in letters:
                         for char in invChars:
-                            if char == letter:
+                            if char.__eq__(letter):
                                 text = text.replace(letter, "")
 
                     return text
@@ -115,11 +115,11 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
                     count = 0
 
                     while len(text) > count:
-                        letters = text[count].replace(" ", "_").split()
+                        letters = list(text[count])
                         for letter in letters:
                             for char in invChars:
-                                if char == letter:
-                                    text = text.replace(letter, "")
+                                if char.__eq__(letter):
+                                    text[count] = text[count].replace(letter, "")
 
                         out.append(text[count])
                         count += 1
@@ -127,11 +127,10 @@ def adv(text, chk="", isLoop=False,  isCustom=False, toLower=False, title=False,
 
                 else:
 
-                    letters = text.split()
-
+                    letters = list(text)
                     for letter in letters:
                         for char in invChars:
-                            if char == letter:
+                            if char.__eq__(letter):
                                 text = text.replace(letter, "")
 
                     return text
