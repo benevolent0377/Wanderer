@@ -1,2 +1,1 @@
-figure out what youre going to do in any capacity
-install packages youll need (wpull and etc)
+BLANK (for now)
