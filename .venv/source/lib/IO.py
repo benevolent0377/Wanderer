@@ -3,7 +3,7 @@ from typing import List
 
 
 # simply prints the string output or creates a query in the terminal, also returns the inputted values
-def say(output, isQuestion=False, isLoop=False, end="\n", syntaxCheck=False):
+def say(output, isQuestion=False, isLoop=False, syntaxCheck=False, end="\n"):
     # checking if the program wants a response, aka: question = yes
     if isQuestion:
 
