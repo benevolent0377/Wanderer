@@ -6,3 +6,7 @@
 + collect local config data in a file called local.yaml
 + add data path and getDataPath to setup.py, this path will be where the tags and website urls as well as the slice parameters will be stored
 + allow for tmp path to be accessed for processing wget output and grabbing links from HTML code
++ add a file reader to take the comments and reprint them into the YAML files you dump, because they are lost in the read/write
++ create commandline parameters and arguments
+\ complete the yamlWrite function
+\ make getdatetime function
