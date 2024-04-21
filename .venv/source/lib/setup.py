@@ -2,8 +2,10 @@ import fileinput
 import platform
 import os
 import sys
+import datetime
 from . import web
 from . import extra
+from . import IO
 
 # a file to initialize the files and services needed to run the program
 
@@ -23,6 +25,7 @@ def fileSetup():
     homePath = getHomePath()
     sysPath = getCWD()
     configPath = getConfigPath()
+    tmpPath = getTmpPath()
 
     configFile = configPath + "config.yaml"
 
@@ -42,7 +45,15 @@ def fileSetup():
     web.fetchFTP(configFile, "config.yaml")
 
     if not os.path.isfile(f"{configPath}{slash}local.yaml"):
-        data = {"OS": OS, "CWD": sysPath, "Home Directory": homePath, "Program-SerialNo": extra.keyGen(24)}
+        File = f"{configPath}{slash}local.yaml"
+        if IO.mkFile(File):
+            elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo"]
+            values = [OS, sysPath, homePath, extra.keyGen(24)]
+            IO.yamlWrite(values, elements, File, True)
+        else:
+            IO.say("Failed to create local configuration file.")
+            sys.exit()
+
 
 # check for internet condition
 def isOnline():
@@ -75,3 +86,19 @@ def getConfigPath():
 
 def getTmpPath():
     return f"{getCWD()}{getSlash()}tmp{getSlash()}"
+
+def getDT(date=True, time=True):
+
+    if date and time:
+        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    elif time and not date:
+        return datetime.datetime.now().strftime('%H:%M:%S')
+    elif date and not time:
+        return datetime.datetime.now().strftime('%Y-%m-%d')
+
+# deleting all files in the tmp directory
+def clearCache():
+    tmpPath = getTmpPath()
+    tmpFiles = os.listdir(tmpPath)
+    for file in tmpFiles:
+        os.remove(f"{tmpPath}{file}")
