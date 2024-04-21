@@ -1,7 +1,8 @@
 # a file of local inout functions making the process easy and keeping the main file decluttered
+import os.path
+
 from . import syntax
 import yaml
-
 
 
 # simply prints the string output or creates a query in the terminal, also returns the inputted values
@@ -51,8 +52,60 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
             else:
                 print(output, end=end)
 
-# incomplete function
-def yamlWrite(value, element, File, isLoop=False, overwrite=False, update=False):
+
+# WRITE TO A YAML FILE
+def yamlWrite(value, element, File, isLoop=False):
+    data = yamlRead(File, element, isLoop)
+    if data is None:
+        data = {}
+        if isLoop and len(element) == len(value):
+            count = 0
+            while len(element) > count:
+                data.update({element[count]: value[count]})
+                count += 1
+
+        else:
+            data.update({element: value})
+    else:
+        if isLoop:
+            count = 0
+            while len(element) > count:
+                data[element[count]].append(value[count])
+                count += 1
+
+        else:
+            data[element] = value
+
+    with open(File, "w") as file:
+        yaml.dump(data, file)
+
+
+# read from a yaml file
+def yamlRead(File, element, isLoop=False, update=False):
+    with open(File, "r") as file:
+        data = yaml.safe_load(file)
+
+        if data is None:
+            return data
+
+        else:
+            if isLoop:
+                count = 0
+                out = []
+                while len(data) > count:
+                    out.append(f"{element[count]}:{data[element[count]]}")
+
+                return out
+            else:
+                return data
+
+
+def mkFile(File):
+    with open(File, "x") as file:
+        return os.path.isfile(File)
+
+
+def fileWrite(value, element, File, isLoop=False, overwrite=False, update=False):
     if overwrite and not update:
         if isLoop:
             count = 0
@@ -75,30 +128,14 @@ def yamlWrite(value, element, File, isLoop=False, overwrite=False, update=False)
                 file.write(value)
 
     if update:
-        data = yamlRead(File, element, isLoop)
+        fileRead()
 
-        if isLoop:
-            count = 0
-            while len(element) > count:
-                data[element[count]].append(value[count])
-                count += 1
 
-        else:
-            data[element] = value
-
-        with open(File, "w") as file:
-            yaml.dump(data, file)
-
-def yamlRead(File, element, isLoop=False):
+# reads a file and outputs an array
+def fileRead(File):
     with open(File, "r") as file:
-        data = yaml.safe_load(file)
+        out = []
+        for line in file:
+            out.append(line)
 
-        if isLoop:
-            count = 0
-            out = []
-            while len(data) > count:
-                out.append(f"{element[count]}:{data[element[count]]}")
-
-            return out
-        else:
-            return data
+    return out
