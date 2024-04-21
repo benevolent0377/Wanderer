@@ -1,3 +1,4 @@
+import fileinput
 import platform
 import os
 import sys
@@ -14,32 +15,30 @@ def run():
 
 
 def fileSetup():
-    OS = platform.platform().lower()
+    OS = getOS()
 
-    if OS.find("linux") or OS.find("mac"):
-        slash = "/"
-    elif OS.find("win"):
-        slash = "\\"
-    else:
-        slash = "/"
+    slash = getSlash()
 
-    homePath = os.path.expanduser("~") + slash
-    sysPath = os.getcwd()
-    configPath = sysPath + slash + "config" + slash
+    homePath = getHomePath()
+    sysPath = getCWD()
+    configPath = getConfigPath()
 
     configFile = configPath + "config.yaml"
 
     if os.path.isdir(configPath):
 
         if not os.path.isfile(configFile):
-            print("hello")
+            open(configFile, "x")
 
     else:
+
         if os.mkdir(configPath) is not None:
             print("Failed to make configuration directory.")
             sys.exit()
         else:
-            print("hello")
+            open(configFile, "x")
+
+    web.fetchFTP(configFile, "config.yaml")
 
 # check for internet condition
 def isOnline():
@@ -48,3 +47,24 @@ def isOnline():
         return False
     else:
         return True
+
+def getOS():
+    return platform.platform().lower()
+
+def getSlash():
+    OS = getOS()
+    if OS.find("linux") or OS.find("mac"):
+        return "/"
+    elif getOS().find("win"):
+        return "\\"
+    else:
+        return "/"
+
+def getHomePath():
+    return os.path.expanduser("~") + getSlash()
+
+def getCWD():
+    return os.getcwd()
+
+def getConfigPath():
+    return getCWD() + getSlash() + "config" + getSlash()
