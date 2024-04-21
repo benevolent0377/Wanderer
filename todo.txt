@@ -2,3 +2,4 @@
 + make the input syntax fuction
 + make the init function under setup.py
 + make a check sum feature so the config file can update when it needs to
++ upload serial data and date time info when an ftp connection is established, just for security and logging

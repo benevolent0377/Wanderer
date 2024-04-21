@@ -3,6 +3,7 @@ import platform
 import os
 import sys
 from . import web
+from . import extra
 
 # a file to initialize the files and services needed to run the program
 
@@ -40,6 +41,9 @@ def fileSetup():
 
     web.fetchFTP(configFile, "config.yaml")
 
+    if not os.path.isfile(f"{configPath}{slash}local.yaml"):
+        data = {"OS": OS, "CWD": sysPath, "Home Directory": homePath, "Program-SerialNo": extra.keyGen(24)}
+
 # check for internet condition
 def isOnline():
     if not web.ping():
@@ -68,3 +72,6 @@ def getCWD():
 
 def getConfigPath():
     return getCWD() + getSlash() + "config" + getSlash()
+
+def getTmpPath():
+    return f"{getCWD()}{getSlash()}tmp{getSlash()}"
