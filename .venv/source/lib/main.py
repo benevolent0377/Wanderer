@@ -9,5 +9,14 @@ def run():
 
     if len(sys.argv) < 2:
         print()
+        quitKill()
     else:
         print()
+
+# the quit function
+def quitKill(preserve=False):
+    if not preserve:
+        setup.clearCache()
+
+    sys.exit()
+
