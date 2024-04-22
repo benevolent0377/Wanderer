@@ -1,6 +1,6 @@
 # a file of local inout functions making the process easy and keeping the main file decluttered
 import os.path
-
+from . import log
 from . import syntax
 import yaml
 
@@ -17,6 +17,8 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
             usrSay = []  # this is the returned list
             while loopVector > count:  # while the # of questions is greater than the responses, ask a question
                 usrSay.append(input(output[count]))
+                log.log(output[count], "output")
+                log.log(usrSay[count], "input")
                 count += 1
 
             if syntaxChk:
@@ -25,11 +27,16 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
                 return usrSay
 
         else:
+            log.log(output, "output")
 
             if syntaxChk:
-                return syntax.adv(input(output), synType, isLoop)  # says the output and returns the prompt
+                response = syntax.adv(input(output), synType, isLoop)  # says the output and returns the prompt
+                log.log(response, "input")
+                return response
             else:
-                return input(output)
+                response = input(output)
+                log.log(response, "input")
+                return response
     # if the program does not want a response, aka: not a question
     else:
 
@@ -38,6 +45,7 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
             count = 0
             loopVector = len(output)
             while loopVector > count:  # while the number of statements is less than the number already stated, speak
+                log.log(output[count], "output")
                 # say more
                 if syntaxChk:
                     print(syntax.adv(output[count], synType), end=end)
@@ -47,6 +55,7 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
 
         # if the program does not want a loop
         else:
+            log.log(output, "output")
             if syntaxChk:
                 print(syntax.adv(output, synType), end=end)
             else:
@@ -55,7 +64,7 @@ def say(output, isQuestion=False, isLoop=False, syntaxChk=False, synType="", end
 
 # WRITE TO A YAML FILE
 def yamlWrite(value, element, File, isLoop=False):
-    data = yamlRead(File, element, isLoop)
+    data = yamlRead(File, element, True)
     if data is None:
         data = {}
         if isLoop and len(element) == len(value):
@@ -70,48 +79,57 @@ def yamlWrite(value, element, File, isLoop=False):
         if isLoop:
             count = 0
             while len(element) > count:
-                data[element[count]].append(value[count])
+                data.update({element[count]: value[count]})
                 count += 1
 
         else:
-            data[element] = value
+            data.update({element: value})
 
     with open(File, "w") as file:
+        log.log(element, "wfile", File)
         yaml.dump(data, file)
 
 
 # read from a yaml file
-def yamlRead(File, element, isLoop=False, update=False):
+def yamlRead(File, element, update=False, elements=1):
     with open(File, "r") as file:
         data = yaml.safe_load(file)
-
+        log.log(element, "rfile", File)
         if data is None:
-            return data
+            return None
 
         else:
-            if isLoop:
+            if update:
                 count = 0
-                out = []
-                while len(data) > count:
-                    out.append(f"{element[count]}:{data[element[count]]}")
+                while elements > count:
+                    data.update({element: data[element]})
+                    count += 1
 
-                return out
-            else:
                 return data
+            else:
+                return data[element]
 
 
 def mkFile(File):
     with open(File, "x") as file:
+        log.log(File, "mkfile")
         return os.path.isfile(File)
 
+def mkDir(dir):
+    os.mkdir(dir)
+    log.log(dir, "mkdir")
+    return os.path.isdir(dir)
 
-def fileWrite(value, element, File, isLoop=False, overwrite=False, update=False):
+
+def fileWrite(value, File, isLoop=False, overwrite=False, update=False, isLog=False):
     if overwrite and not update:
         if isLoop:
             count = 0
             with open(File, "w") as file:
                 while len(value) > count:
-                    file.write(value[count])
+                    file.write(value[count] + "\n")
+                    if not isLog:
+                        log.log(value[count], "wfile", File)
                     count += 1
         else:
             with open(File, "w") as file:
@@ -121,14 +139,18 @@ def fileWrite(value, element, File, isLoop=False, overwrite=False, update=False)
             count = 0
             with open(File, "a") as file:
                 while len(value) > count:
-                    file.write(value[count])
+                    file.write(value[count] + "\n")
+                    if not isLog:
+                        log.log(value[count], "wfile", File)
                     count += 1
         else:
             with open(File, "a") as file:
                 file.write(value)
+                if not isLog:
+                    log.log(value, "wfile", File)
 
     if update:
-        fileRead()
+        print()
 
 
 # reads a file and outputs an array
@@ -138,4 +160,5 @@ def fileRead(File):
         for line in file:
             out.append(line)
 
+    log.log(File, "rfile")
     return out
