@@ -1,14 +1,14 @@
 # imports
-from . import IO
-from . import setup
+from . import log
+from . import system
 import sys
+from . import IO
 from . import extra
 
 def run():
-    setup.run()
+    system.init()
 
     if len(sys.argv) < 2:
-        print()
         quitKill()
     else:
         print()
@@ -16,7 +16,8 @@ def run():
 # the quit function
 def quitKill(preserve=False):
     if not preserve:
-        setup.clearCache()
+        system.clearCache()
 
+    log.log("", "quit")
     sys.exit()
 
