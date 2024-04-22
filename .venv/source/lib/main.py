@@ -3,15 +3,17 @@ from . import log
 from . import system
 import sys
 from . import IO
-from . import extra
+from . import cmd
 
 def run():
     system.init()
 
-    if len(sys.argv) < 2:
-        quitKill()
-    else:
-        print()
+    if len(sys.argv) >= 2:  # if command arguments are given
+
+        system.dumpHead()
+        cmd.parse(sys.argv[3:])
+    else:  # if no command arguments were given
+        system.dumpHead()
 
 # the quit function
 def quitKill(preserve=False):

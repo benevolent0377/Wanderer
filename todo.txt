@@ -2,13 +2,15 @@
 \ make the input syntax fuction
 \ make the run function under setup.py
 - make a check sum feature so the config file can update when it needs to
-+ upload serial data and date time info when an ftp connection is established, just for security and logging
++ upload serial data and date time info when a ftp connection is established, just for security and logging
 \ collect local config data in a file called local.yaml
-+ add data path and getDataPath to setup.py, this path will be where the tags and website urls as well as the slice parameters will be stored
-+ allow for tmp path to be accessed for processing wget output and grabbing links from HTML code
+\ add data path and getDataPath to system.py, this path will be where the tags and website urls as well as the slice parameters will be stored
++ allow for tmp path to be accessed for processing curl output and grabbing links from HTML code
 + add a file reader to take the comments and reprint them into the YAML files you dump, because they are lost in the read/write
 + create commandline parameters and arguments
 \ complete the yamlWrite function
 \ make getdatetime function
 \ add log directory and program log print
 \ finish file system setup code
++ develop help.py
++ develop cmd.py

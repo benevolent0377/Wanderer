@@ -55,8 +55,8 @@ def fileSetup():
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
-            elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs"]
-            values = [OS, sysPath, homePath, extra.keyGen(24), "False"]
+            elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs", "Version"]
+            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Alpha"]
             IO.yamlWrite(values, elements, configFileL, True)
         else:
             IO.say("Failed to create local configuration file.")
@@ -77,11 +77,13 @@ def fileSetup():
 
 def sendLogs(configFileL):
 
-    if IO.yamlRead(configFileL, "SendLogs").__eq__('False'):
+    if IO.yamlRead(configFileL, "SendLogs").__eq__(' '):
         response = IO.say("Would you like to opt into uploading log data? It IS anonymous. DEFAULT is no. (yes/no)", True, syntaxChk=True, synType="internal")
-        if response.__eq__("yes") or response.eq("y"):
+        if response.__eq__("yes") or response.__eq__("y"):
             IO.yamlWrite("True", "SendLogs", configFileL)
-    IO.say("Thank you for using Wanderer.py!")
+        else:
+            IO.yamlWrite("False", "SendLogs", configFileL)
+        IO.say("Thank you for using Wanderer.py!")
 
 # check for internet condition
 def isOnline():
@@ -152,3 +154,7 @@ def getLogInfo():
 
 def getDataPath():
     return f"{getCWD()}{getSlash()}data{getSlash()}"
+
+def dumpHead():
+    extra.printBanner()
+    IO.say(['Created by: Calithos4136', f'Version: {IO.yamlRead(f"{getConfigPath()}local.yaml", "Version")}', f'SessionID: {logID}', '===========================================\n\n'], isLoop=True)

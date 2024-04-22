@@ -1,6 +1,6 @@
 import socket
 import ftplib
-# import requests
+import requests
 from . import IO
 from . import log
 from . import system
@@ -63,5 +63,5 @@ def postFTP(localFile, remoteFile, timeout=2000, isTmp=False, isYaml=False, keyw
                 log.log(remoteFile, "ftpD", hostName)
 
 def HTTPget(host, destination, timeout=100):
-    # placeholder text
+    # requests.get() <-- incomplete command + filler code
     print()
