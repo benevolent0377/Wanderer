@@ -32,6 +32,7 @@ def fileSetup():
     configPath = getConfigPath()
     tmpPath = getTmpPath()
     logPath = getLogPath()
+    dataPath = getDataPath()
 
     configFileP = f"{configPath}parent.yaml"
     configFileL = f"{configPath}local.yaml"
@@ -67,6 +68,10 @@ def fileSetup():
         if not IO.mkDir(tmpPath):
             IO.say("Failed to create temporary directory.")
             main.quitKill()
+
+    if not os.path.isdir(dataPath):
+        if not IO.mkDir(dataPath):
+            IO.say("Failed to create data directory.")
 
     sendLogs(configFileL)
 
@@ -144,3 +149,6 @@ def getLogInfo():
     logFile = f"{getLogPath()}{logName}"
 
     return [logID, logName, logFile, sysDT]
+
+def getDataPath():
+    return f"{getCWD()}{getSlash()}data{getSlash()}"
