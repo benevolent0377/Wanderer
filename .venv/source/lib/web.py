@@ -1,5 +1,7 @@
 import socket
 import ftplib
+import urllib3
+import requests
 from . import IO
 from . import log
 from . import system
@@ -60,3 +62,7 @@ def postFTP(localFile, remoteFile, timeout=2000, isTmp=False, isYaml=False, keyw
 
                 ftp.storlines(f"STOR {remoteFile}", file)
                 log.log(remoteFile, "ftpD", hostName)
+
+def HTTPget(host, destination, timeout=100):
+    # placeholder text
+    print()
