@@ -1,7 +1,6 @@
 import socket
 import ftplib
-import urllib3
-import requests
+# import requests
 from . import IO
 from . import log
 from . import system
