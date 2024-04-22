@@ -11,3 +11,4 @@
 \ complete the yamlWrite function
 \ make getdatetime function
 \ add log directory and program log print
+\ finish file system setup code
