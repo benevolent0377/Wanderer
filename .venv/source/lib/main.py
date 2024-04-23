@@ -7,6 +7,7 @@ from . import cmd
 
 def run():
     system.init()
+    loop = True
 
     if len(sys.argv) >= 2:  # if command arguments are given
 
@@ -15,7 +16,22 @@ def run():
         quitKill()
     else:  # if no command arguments were given
         system.dumpHead()
-        quitKill()
+        while loop:
+            respon = IO.say(["Enter the desired website. ", "Enter tags, accounts, profiles, or direct links. ",
+                    "Enter your desired save directory. "], isLoop= True, isQuestion=True, syntaxChk=True, synType="internal")
+
+            commands = {"host": respon[0], "attributes": respon[1], "stor": respon[2]}
+
+            cmd.read(commands, 1)
+
+            repeat = IO.say("Download something else?", True, syntaxChk=True, synType="internal")
+
+            if not repeat.__eq__("y") or not repeat.__eq__("yes"):
+                loop = False
+
+
+        else:
+            quitKill()
 
 # the quit function
 def quitKill(preserve=False):
