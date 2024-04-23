@@ -1,6 +1,7 @@
 from . import IO
 from . import system
 from . import log
+from . import helper
 # a file to parse all commands
 
 def parse(values):
@@ -48,7 +49,7 @@ def read(pData):
 
     IO.say(pData)
     if varsIn.__contains__("help"):
-        IO.say("hi")
+        helper.request()
     else:
         IO.say("hello")
 
