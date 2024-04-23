@@ -20,7 +20,8 @@ def init():
     fileSetup()
 
     if not isOnline():
-        sys.exit()
+        main.quitKill()
+    # IO.say("--- NOTICE Internet Capabilities Currently Disabled... NOTICE ---\n")
 
 
 def fileSetup():

@@ -51,6 +51,7 @@ def log(value, action, element=""):
             data.append(f"[{system.getDT(date=False)}]: Read \'{value}\'")
         case "err":
             data.append(f"[{system.getDT(date=False)}]: Error Occurred: {value}")
+            main.quitKill()
         case "rfile":
             data.append(f"[{system.getDT(date=False)}]: Read \'{value}\' from file \'{element}\'")
         case "wfile":
