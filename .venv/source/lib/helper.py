@@ -1,5 +1,5 @@
 
 # a file to handle all help requests
 
-def request():
+def request(command=""):
     print()
