@@ -19,9 +19,9 @@ def init():
 
     fileSetup()
 
-    if not isOnline():
-        main.quitKill()
-    # IO.say("--- NOTICE Internet Capabilities Currently Disabled... NOTICE ---\n")
+    #if not isOnline():
+        #main.quitKill()
+    IO.say("--- NOTICE Internet Capabilities Currently Disabled... NOTICE ---\n")
 
 
 def fileSetup():
@@ -34,6 +34,7 @@ def fileSetup():
     tmpPath = getTmpPath()
     logPath = getLogPath()
     dataPath = getDataPath()
+    downloadPath = getDownloadPath()
 
     configFileP = f"{configPath}parent.yaml"
     configFileL = f"{configPath}local.yaml"
@@ -47,12 +48,13 @@ def fileSetup():
 
         if not IO.mkDir(configPath):
             print("Failed to make configuration directory.")
+            log.log("Config dir creation failed.", "err")
             main.quitKill()
         else:
             log.log(configPath, "mkdir")
             open(configFileP, "x")
 
-    web.fetchFTP(configFileP, "parent.yaml")
+    #web.fetchFTP(configFileP, "parent.yaml")
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
@@ -61,6 +63,7 @@ def fileSetup():
             IO.yamlWrite(values, elements, configFileL, True)
         else:
             IO.say("Failed to create local configuration file.")
+            log.log("local.config creation failed.", "err")
             main.quitKill()
 
     log.init(configFileL, logPath)
@@ -68,11 +71,18 @@ def fileSetup():
     if not os.path.isdir(tmpPath):
         if not IO.mkDir(tmpPath):
             IO.say("Failed to create temporary directory.")
+            log.log("tmp dir creation failed.", "err")
             main.quitKill()
 
     if not os.path.isdir(dataPath):
         if not IO.mkDir(dataPath):
             IO.say("Failed to create data directory.")
+            log.log("data dir creation failed.", "err")
+
+    if not os.path.isdir(downloadPath):
+        if not IO.mkDir(downloadPath):
+            IO.say("Failed to create downloads directory.")
+            log.log("Download dir creation failed.", "err")
 
     sendLogs(configFileL)
 
@@ -155,6 +165,9 @@ def getLogInfo():
 
 def getDataPath():
     return f"{getCWD()}{getSlash()}data{getSlash()}"
+
+def getDownloadPath():
+    return f"{getCWD()}{getSlash()}downloads{getSlash()}"
 
 def dumpHead():
     extra.printBanner()

@@ -14,3 +14,4 @@
 + develop help.py
 + develop cmd.py
 + add custon syntax or regex checks for each of the command's arguments before passing them, args have only been stripped and lowercased for internal processing ease
++ copy curl's method of taking multiple web pages in lists and make a file readable

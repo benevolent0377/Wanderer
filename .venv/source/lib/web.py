@@ -64,6 +64,6 @@ def postFTP(localFile, remoteFile, timeout=45, isTmp=False, isYaml=False, keywor
                 ftp.storlines(f"STOR {remoteFile}", file)
                 log.log(remoteFile, "ftpD", hostName)
 
-def HTTPget(host, destination, timeout=100):
+def HTTPget(host, destination, timeout=45):
     # requests.get() <-- incomplete command + filler code
     print()

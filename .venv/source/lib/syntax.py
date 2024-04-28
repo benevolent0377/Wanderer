@@ -26,18 +26,22 @@ def adv(text, chk="", isLoop=False, isCustom=False, toLower=False, title=False, 
                 count = 0
                 err = 0
 
-                while len(text) > count:
+                if isLoop:
+                    while len(text) > count:
 
+                        if re.search(regexStr, text) is None:
+                            err = 1
+                else:
                     if re.search(regexStr, text) is None:
                         err = 1
 
                 if err == 0:
 
-                    return basic(text, isLoop)
+                    return True
 
                 else:
 
-                    return "Does not match."
+                    return False
 
             else:
                 if re.search(regexStr, text) is not None:
@@ -106,6 +110,36 @@ def adv(text, chk="", isLoop=False, isCustom=False, toLower=False, title=False, 
 
                 invChars = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '[',
                             '}', '}', '|', '\\', ':', ';', '"', '\'', '<', ',', '>', '.', '?', '/']
+
+                if isLoop:
+
+                    out = []
+                    count = 0
+
+                    while len(text) > count:
+                        letters = list(text[count])
+                        for letter in letters:
+                            for char in invChars:
+                                if char.__eq__(letter):
+                                    text[count] = text[count].replace(letter, "")
+
+                        out.append(text[count])
+                        count += 1
+                    return out
+
+                else:
+
+                    letters = list(text)
+                    for letter in letters:
+                        for char in invChars:
+                            if char.__eq__(letter):
+                                text = text.replace(letter, "")
+
+                    return text
+
+            case "dir":
+                invChars = ['`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '[',
+                            '}', '}', '|', ':', ';', '"', '\'', '<', ',', '>', '.', '?']
 
                 if isLoop:
 
