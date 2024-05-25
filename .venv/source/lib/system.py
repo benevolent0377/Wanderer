@@ -19,9 +19,9 @@ def init():
 
     fileSetup()
 
-    #if not isOnline():
-        #main.quitKill()
-    IO.say("--- NOTICE Internet Capabilities Currently Disabled... NOTICE ---\n")
+    if not isOnline():
+        main.quitKill()
+    #IO.say("--- NOTICE Internet Capabilities Currently Disabled... NOTICE ---\n")
 
 
 def fileSetup():
@@ -54,7 +54,7 @@ def fileSetup():
             log.log(configPath, "mkdir")
             open(configFileP, "x")
 
-    #web.fetchFTP(configFileP, "parent.yaml")
+    web.fetchFTP(configFileP, "parent.yaml")
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
