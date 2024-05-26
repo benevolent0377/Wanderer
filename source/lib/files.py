@@ -1,5 +1,5 @@
 import os
-from Wanderer.core import web, IO, system, extra, log
+from source.core import web, IO, system, extra, log
 
 def mkConfig():
     OS = system.getOS()
@@ -35,5 +35,5 @@ def sendLogs(configFileL):
             IO.yamlWrite("True", "SendLogs", configFileL)
         else:
             IO.yamlWrite("False", "SendLogs", configFileL)
-        IO.say("Thank you for using Wanderer.py!")
+        IO.say("Thank you for using source.py!")
 

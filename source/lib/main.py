@@ -1,4 +1,4 @@
-from Wanderer.core import system, cmd, IO
+from source.core import system, cmd, IO
 import sys
 from . import banner, files
 

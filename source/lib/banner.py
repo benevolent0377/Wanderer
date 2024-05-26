@@ -1,4 +1,4 @@
-from Wanderer.core import log
+from source.core import log
 
 def out():
     print(
