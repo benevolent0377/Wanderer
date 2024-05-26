@@ -1,6 +1,6 @@
 from Wanderer.core import log
 
-def print():
+def out():
     print(
         '  __      __            _                 \n'
         '  \\ \\    / /_ _ _ _  __| |___ _ _ ___ _ _\n'

@@ -1,10 +1,9 @@
 import os
 from Wanderer.core import web, IO, system, extra, log
-import main
-
 
 def mkConfig():
     OS = system.getOS()
+    slash = system.getSlash()
 
     configFileP = f"{system.getConfigPath()}parent.yaml"
     configFileL = f"{system.getConfigPath()}local.yaml"
@@ -22,7 +21,7 @@ def mkConfig():
         else:
             IO.say("Failed to create local configuration file.")
             log.log("local.config creation failed.", "err")
-            main.quitKill()
+            system.quitKill()
 
     log.init(configFileL, logPath)
 
