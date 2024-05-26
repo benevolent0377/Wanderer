@@ -1,20 +1,17 @@
-# imports
-from . import log
-from . import system
-import sys
-from . import IO
-from . import cmd
+from Wanderer.core import system, cmd, IO
+import sys, banner
 
 
 def run():
-    system.init()
+    system.init(["config", "data", "log", "tmp", "ex", "downloads"], [])
 
     if len(sys.argv) >= 2:  # if command arguments are given
-
+        banner.print()
         system.dumpHead()
         cmd.parse(sys.argv[1:])
-        quitKill()
+        system.quitKill()
     else:  # if no command arguments were given
+        banner.print()
         system.dumpHead()
         loop = True
         while loop:
@@ -25,7 +22,8 @@ def run():
 
             commands = {"host": respon[0], "attributes": respon[1], "stor": respon[2]}
 
-            cmd.read(commands, 1)
+            cmd.read(commands, ["host", "attributes", "stor"], 1, "host",
+                     "(http(s)?:\/\/)?([a-z0-9]){3,256}\.([a-z0-9]){2,6}$")
 
             repeat = IO.say("Download something else?", True, syntaxChk=True, synType="internal")
             IO.say(repeat)
@@ -34,14 +32,5 @@ def run():
             else:
                 loop = False
 
-
         # close the program
-        quitKill()
-
-
-# the quit function
-def quitKill(preserve=False):
-    if not preserve:
-        system.clearCache()
-    log.log("", "quit")
-    sys.exit()
+        system.quitKill()
