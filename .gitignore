@@ -1,5 +1,7 @@
 /Wanderer/log/
 /Wanderer/tmp/
+/Wanderer/data/
+/Wanderer/downloads/
 /Wanderer/config/
 /.venv/bin/
 /.venv/lib/
