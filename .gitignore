@@ -1,0 +1,11 @@
+/log/
+/data/
+/downloads/
+/.venv/bin/
+/.venv/lib/
+/.venv/lib64/
+/.venv/include/
+/source/lib/__pycache__
+/config/
+/tmp/
+/source/core/__pycache__

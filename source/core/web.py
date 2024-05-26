@@ -1,9 +1,7 @@
 import socket
 import ftplib
-import requests
-from . import IO
-from . import log
-from . import system
+from . import IO, log
+
 # a file for all the HTTP and HTTPS functions
 hostName = "calithos.in"
 usr = "wanderer@calithos.in"

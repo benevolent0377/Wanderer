@@ -1,6 +1,4 @@
-from . import IO
-from . import system
-from . import main
+from . import IO, system
 import os
 
 data = []
@@ -10,7 +8,7 @@ def init(configFileL, logPath):
     if not os.path.isdir(logPath):
         if not IO.mkDir(logPath):
             IO.say("Failed to make log directory.")
-            main.quitKill()
+            system.quitKill()
 
             # comment chunk for log creation, remove when you want logs
         else:
@@ -51,7 +49,7 @@ def log(value, action, element=""):
             data.append(f"[{system.getDT(date=False)}]: Read \'{value}\'")
         case "err":
             data.append(f"[{system.getDT(date=False)}]: Error Occurred: {value}")
-            main.quitKill()
+            system.quitKill()
         case "rfile":
             data.append(f"[{system.getDT(date=False)}]: Read \'{value}\' from file \'{element}\'")
         case "wfile":

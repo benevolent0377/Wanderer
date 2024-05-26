@@ -1,5 +1,6 @@
-from . import IO
-from . import system
+from . import IO, system
+
+
 # a file to handle all help requests
 
 def request(command=""):

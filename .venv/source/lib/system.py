@@ -58,8 +58,8 @@ def fileSetup():
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
-            elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs", "Version", "localHostList"]
-            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Alpha", ""]
+            elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs", "Version"]
+            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Alpha"]
             IO.yamlWrite(values, elements, configFileL, True)
         else:
             IO.say("Failed to create local configuration file.")
