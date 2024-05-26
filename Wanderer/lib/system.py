@@ -1,7 +1,5 @@
-import fileinput
 import platform
 import os
-import sys
 import datetime
 from . import log
 from . import web

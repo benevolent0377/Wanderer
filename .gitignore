@@ -1,8 +1,8 @@
-/.venv/source/log/
-/.venv/source/tmp/
-/.venv/source/config/
+/Wanderer/log/
+/Wanderer/tmp/
+/Wanderer/config/
 /.venv/bin/
 /.venv/lib/
 /.venv/lib64/
 /.venv/include/
-/.venv/source/lib/__pycache__
+/Wanderer/lib/__pycache__

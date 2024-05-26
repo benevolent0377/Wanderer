@@ -3,7 +3,6 @@ from . import system
 from . import log
 from . import helper
 from . import syntax
-from . import web
 
 
 # a file to parse all commands
