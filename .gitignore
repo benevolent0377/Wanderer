@@ -1,10 +1,10 @@
-/Wanderer/log/
-/Wanderer/tmp/
-/Wanderer/data/
-/Wanderer/downloads/
-/Wanderer/config/
+/log/
+/data/
+/downloads/
 /.venv/bin/
 /.venv/lib/
 /.venv/lib64/
 /.venv/include/
-/Wanderer/lib/__pycache__
+lib/__pycache__
+/config/
+/tmp/
