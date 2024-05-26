@@ -57,7 +57,6 @@ def read(pData, mode=0):
         varsIn = pData
 
     if mode == 0:
-        IO.say(varsIn)
         if varsIn.__contains__("help"):
             helper.request(varsIn.__getitem__("help"))
         else:
@@ -69,7 +68,7 @@ def read(pData, mode=0):
                 IO.say(
                     "You must provide attributes: links, tags, pages, etc... Define these with '-A' or '--attributes'.")
                 log.log("No attributes provided.", "err")
-            if not varsIn.__contains__("stor"):
+            if not varsIn.__contains__("stor") or varsIn.__getitem__("stor").__eq__(""):
                 IO.say(f"Storing files in {system.getDownloadPath()}")
             if not varsIn.__contains__("timeout"):
                 IO.say("Default timeout is 45 seconds. Use '-t' or '--timeout' to alter.")

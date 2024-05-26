@@ -28,7 +28,6 @@ def run():
             cmd.read(commands, 1)
 
             repeat = IO.say("Download something else?", True, syntaxChk=True, synType="internal")
-            IO.say(repeat)
             if repeat.__eq__("yes") or repeat.__eq__("y") or repeat.__eq__("1"):
                 print()
             else:
