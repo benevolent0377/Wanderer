@@ -1,7 +1,8 @@
 /.venv/source/log/
 /.venv/source/tmp/
 /.venv/source/config/
-/.venv/bin
+/.venv/bin/
 /.venv/lib
-/.venv/lib64
-/.venv/include
+/.venv/lib64/
+/.venv/include/
+
