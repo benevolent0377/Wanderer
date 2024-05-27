@@ -1,5 +1,6 @@
 import os
-from source.core import web, IO, system, extra, log
+from source.core import IO, system, extra, log
+from . import internet
 
 def mkConfig():
     OS = system.getOS()
@@ -11,7 +12,7 @@ def mkConfig():
     homePath = system.getHomePath()
     logPath = system.getLogPath()
 
-    web.fetchFTP(configFileP, "parent.yaml")
+    internet.fetchFTP(configFileP, "parent.yaml")
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
