@@ -4,13 +4,15 @@ from . import banner, files, args
 
 
 def run():
+
     system.init(["config", "data", "log", "/tmp", "ex", "downloads"], [], True)
+
     files.mkConfig()
 
     if len(sys.argv) >= 2:  # if command arguments are given
         banner.out()
         system.dumpHead()
-        args.main(cmd.parse(sys.argv[1:]))
+        args.parse(cmd.parse(sys.argv[1:]))
         system.quitKill()
     else:  # if no command arguments were given
         banner.out()
@@ -24,7 +26,7 @@ def run():
 
             commands = {"host": respon[0], "attributes": respon[1], "stor": respon[2]}
 
-            args.main(cmd.read(commands, ["host", "attributes", "stor"], 1, "host",
+            args.parse(cmd.read(commands, ["host", "attributes", "stor"], 1, "host",
                      "(http(s)?:\\/\\/)?([a-z0-9]){3,256}\\.([a-z0-9]){2,6}$"))
 
             repeat = IO.say("Download something else?", True, syntaxChk=True, synType="internal")
