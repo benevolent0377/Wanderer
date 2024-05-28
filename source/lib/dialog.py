@@ -1,3 +1,3 @@
 def missingArgs():
-    print()
+    print("Missing arguments... cannot run.")
 

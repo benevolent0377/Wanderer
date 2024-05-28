@@ -25,9 +25,9 @@ def run():
                             synType="internal")
 
             commands = {"host": respon[0], "attributes": respon[1], "stor": respon[2]}
+            print(commands)
 
-            args.parse(cmd.read(commands, ["host", "attributes", "stor"], 1, "host",
-                     "(http(s)?:\\/\\/)?([a-z0-9]){3,256}\\.([a-z0-9]){2,6}$"))
+            args.parse(commands, 1, ["host", "attributes", "stor"])
 
             repeat = IO.say("Download something else?", True, syntaxChk=True, synType="internal")
             IO.say(repeat)
