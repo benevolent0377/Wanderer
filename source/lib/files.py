@@ -12,12 +12,12 @@ def mkConfig():
     homePath = system.getHomePath()
     logPath = system.getLogPath()
 
-    internet.fetchFTP(configFileP, "parent.yaml")
+    #internet.fetchFTP(configFileP, "parent.yaml")
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
             elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs", "Version"]
-            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Alpha"]
+            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Development Test"]
             IO.yamlWrite(values, elements, configFileL, True)
         else:
             IO.say("Failed to create local configuration file.")

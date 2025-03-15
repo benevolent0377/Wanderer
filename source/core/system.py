@@ -50,17 +50,15 @@ def isOnline():
 
 
 def getOS():
-    return platform.platform().lower()
+    return str(platform.system().lower())
 
 
 def getSlash():
     OS = getOS()
-    if OS.find("linux") or OS.find("mac"):
+    if OS.find("linux") != -1 or OS.find("mac") != -1:
         return "/"
-    elif getOS().find("win"):
+    elif OS.find("win") != -1:
         return "\\"
-    else:
-        return "/"
 
 
 def getHomePath():
@@ -102,7 +100,7 @@ def clearCache():
 
 
 def getLogInfo():
-    logName = f"{sysDT}_{logID}.log.txt"
+    logName = f"{sysDT.replace(':', '').replace(' ', '_')}_{logID}.log.txt"
     logFile = f"{getLogPath()}{logName}"
 
     return [logID, logName, logFile, sysDT]
@@ -124,4 +122,4 @@ def quitKill(preserve=False):
     exit()
 
 def dumpHead():
-    IO.say(['Created by: Calithos4136', f'Version: {IO.yamlRead(f"{getConfigPath()}local.yaml", "Version")}', f'SessionID: {logID}', '===========================================\n\n'], isLoop=True)
+    IO.say(['Created by: Benevolent0377', f'Version: {IO.yamlRead(f"{getConfigPath()}local.yaml", "Version")}', f'SessionID: {logID}', '===========================================\n\n'], isLoop=True)
