@@ -3,8 +3,8 @@
 # config file
 name: "wanderer"
 domain: "calithos.in/wanderer"
-author: "calithos4136"
-github: "https://github.com/calithos4136/Wanderer"
+author: "benevolent0377"
+github: "https://github.com/benevolent0377/Wanderer"
 publicKey: "AAAAC3NzaC1lZDI1NTE5AAAAIOWdfxsz+mL4zmSbDdd7ay50dM3reX2W1ERpBzRh9ttu"
 botMailAddr: "wanderer@calithos.in"
 knownHostList:
