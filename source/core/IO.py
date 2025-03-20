@@ -151,6 +151,13 @@ def fileWrite(value, File, isLoop=False, overwrite=False, update=False, isLog=Fa
     if update:
         print()
 
+def rmFile(File):
+    try:
+        os.remove(File)
+        return True
+    except:
+        return False
+
 
 # reads a file and outputs an array
 def fileRead(File):

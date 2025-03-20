@@ -1,5 +1,6 @@
 import socket
 import ftplib
+import requests
 from . import IO, log
 
 # a file for all the HTTP and HTTPS functions
@@ -62,6 +63,22 @@ def postFTP(localFile, remoteFile, timeout=45, isTmp=False, isYaml=False, keywor
                 ftp.storlines(f"STOR {remoteFile}", file)
                 log.log(remoteFile, "ftpD", hostName)
 
-def HTTPget(host, destination, timeout=45):
-    # requests.get() <-- incomplete command + filler code
+def HTTPget(host, returnType='bytes', timeout=45):
+
+    data = requests.get(host)
+
+    match returnType:
+        case 'bytes':
+            return data.content
+        case 'text':
+            return data.text
+        case 'head':
+            return data.headers
+        case 'json':
+            return data.json
+        case 'code':
+            return data.status_code
+        case 'boolean':
+            return data.ok
+
     print()

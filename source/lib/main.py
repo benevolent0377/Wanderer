@@ -1,13 +1,18 @@
 from source.core import system, cmd, IO
 import sys
 from . import banner, files, args
-
+from source.update import Ucore as core
+from source.update import Ulib as lib
 
 def run():
+
+    core.get()
 
     system.init(["config", "data", "log", "/tmp", "ex", "downloads"], [], True)
 
     files.mkConfig()
+
+    lib.get("wanderer")
 
     if len(sys.argv) >= 2:  # if command arguments are given
         banner.out()
