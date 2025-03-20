@@ -5,6 +5,8 @@ downloads/
 .venv/lib/
 .venv/lib64/
 .venv/include/
+source/core/__pychache__
+source/__pycache__
 source/lib/__pycache__
 config/local.yaml
 /tmp/
