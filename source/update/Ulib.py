@@ -44,6 +44,7 @@ def update(projName):
         remotemd5 = hashlib.md5(requests.get(URL).content).hexdigest()
         
         if localmd5 != remotemd5:
+            print(fileName)
 
             IO.rmFile(localPATH + fileName)
             IO.mkFile(localPATH + fileName)
