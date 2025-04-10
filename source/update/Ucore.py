@@ -32,7 +32,6 @@ def update():
         remotemd5 = hashlib.md5(requests.get(URL).content).hexdigest()
 
         if localmd5 != remotemd5:
-            print(localmd5, remotemd5)
             rmFile(corePATH + fileName)
             mkFile(corePATH + fileName)
             fileWrite(requests.get(URL).text, corePATH + fileName, overwrite=True)

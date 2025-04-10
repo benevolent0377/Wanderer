@@ -15,3 +15,6 @@
 \ develop cmd.py
 \ add custom syntax or regex checks for each of the command's arguments before passing them, args have only been stripped and lowercased for internal processing ease
 + copy curl's method of taking multiple web pages in lists and make a file readable
++ make the program read a file and define it's own delimiters for the specified objects the user wants
++ make the downloads of multiple items threaded for faster downloads (allow the user to specifiy the amt of threads to use
++ make a web indexing function using the google indexing API

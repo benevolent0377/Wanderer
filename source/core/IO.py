@@ -1,4 +1,4 @@
-# a file of local inout functions making the process easy and keeping the main file decluttered
+# a file of local input functions
 import os.path
 from . import syntax, log
 import yaml
@@ -10,28 +10,35 @@ def say(output="", isQuestion=False, isLoop=False, syntaxChk=False, synType="", 
     if isQuestion:
 
         # seeing if the program wants to ask multiple queries
+        # if isLoop, then the output value should be an array and not a string
         if isLoop:
             loopVector = len(output)
             count = 0
-            usrSay = []  # this is the returned list
+            usrSay = []  # this is the returned list from the keyboard
             while loopVector > count:  # while the # of questions is greater than the responses, ask a question
-                usrSay.append(input(output[count]))
+                usrSay.append(input(output[count])) # store the user's response to the printed question to the end of usrSay
+
+                # send the data to the log file for this instance
                 log.log(output[count], "output")
                 log.log(usrSay[count], "input")
                 count += 1
-
+            # if there is syntax to be checked for, the syntax library will be called and the applicable syntax will be initialized and returned
             if syntaxChk:
                 return syntax.adv(usrSay, synType, isLoop)
+            # otherwise return the raw output
             else:
                 return usrSay
-
+        # if the output is only to be printed once
         else:
+            # logging
             log.log(output, "output")
-
+            
+            # again checking for syntax and calling the syntax library if it is True
             if syntaxChk:
                 response = syntax.adv(input(output), synType, isLoop)  # says the output and returns the prompt
                 log.log(response, "input")
                 return response
+            # otherwise, return the raw output
             else:
                 response = input(output)
                 log.log(response, "input")
@@ -63,6 +70,7 @@ def say(output="", isQuestion=False, isLoop=False, syntaxChk=False, synType="", 
 
 # WRITE TO A YAML FILE
 def yamlWrite(value, element, File, isLoop=False):
+    # check if there is data prestored in File
     data = yamlRead(File, element, True)
     if data is None:
         data = {}

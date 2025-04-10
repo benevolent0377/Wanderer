@@ -6,12 +6,13 @@ from source.core import IO, system, web
 
 def update(projName):
     
+
     reposURL = "https://api.github.com/users/benevolent0377/repos"
     slash = system.getSlash()
     localPATH = system.getCWD() + slash + "source" + slash + "lib" + slash
     projectID = ""
     repos = requests.get(reposURL).json()
-
+    
     repoData = {}
 
     for repo in repos:
@@ -44,7 +45,6 @@ def update(projName):
         remotemd5 = hashlib.md5(requests.get(URL).content).hexdigest()
         
         if localmd5 != remotemd5:
-            print(fileName)
 
             IO.rmFile(localPATH + fileName)
             IO.mkFile(localPATH + fileName)
