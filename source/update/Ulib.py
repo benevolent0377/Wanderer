@@ -1,18 +1,17 @@
 # this file will update the source code of the whole project (not including this file)
 # this file will most likely be small, only passing variables to the core function that is more specified to update the source files
 
-import requests, hashlib
+import requests, hashlib, sys
 from source.core import IO, system, web
 
 def update(projName):
     
-
     reposURL = "https://api.github.com/users/benevolent0377/repos"
     slash = system.getSlash()
     localPATH = system.getCWD() + slash + "source" + slash + "lib" + slash
     projectID = ""
     repos = requests.get(reposURL).json()
-    
+
     repoData = {}
 
     for repo in repos:
@@ -34,18 +33,21 @@ def update(projName):
     altered = False
     for fileName, URL in projectDataParsed.items():
 
-        outputArray = IO.fileRead(localPATH + fileName)
-        outputString = ""
-        for line in outputArray:
-            outputString += line
-
+        if IO.fileRead(localPATH + fileName):
+	   
+	        outputArray = IO.fileRead(localPATH + fileName)
+            outputString = ""
+            for line in outputArray:
+                outputString += line
+	    else:
+	        outputString = ""
+        
         outputString = outputString.encode()
 
         localmd5 = hashlib.md5(outputString).hexdigest()
         remotemd5 = hashlib.md5(requests.get(URL).content).hexdigest()
         
         if localmd5 != remotemd5:
-
             IO.rmFile(localPATH + fileName)
             IO.mkFile(localPATH + fileName)
             IO.fileWrite(requests.get(URL).text, localPATH + fileName, overwrite=True)

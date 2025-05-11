@@ -1,6 +1,6 @@
-import ftplib, hashlib
+import ftplib
 import requests
-from source.core import IO, log, system
+from source.core import IO, log, web
 
 # a file for all the HTTP and HTTPS functions
 hostName = "calithos.in"
@@ -55,35 +55,3 @@ def HTTPget(host, destination, timeout=45):
     else:
         IO.say("Host Unavaliable")
     print()
-
-def getParentCFG():
-
-    configURL = "https://api.github.com/repositories/789248032/contents/config"
-    slash = system.getSlash()
-    configPath = system.getCWD() + slash + "config" + slash + "parent.yaml"
-    configDataRaw = requests.get(configURL).json()
-
-    completion = False
-
-    configData = configDataRaw[0]
-
-    downloadURL = configData["download_url"]
-    remoteContent = requests.get(downloadURL).text
-
-    localContent = IO.fileRead(configPath)
-    localContentString = ""
-
-    for line in localContent:
-        localContentString += line
-
-    localmd5 = hashlib.md5(localContentString.encode()).hexdigest()
-    remotemd5 = hashlib.md5(remoteContent.encode()).hexdigest()
-
-    if remotemd5 != localmd5:
-        IO.rmFile(configPath)
-        IO.mkFile(configPath)
-        IO.fileWrite(remoteContent, configPath, overwrite = True)
-    
-    completion = True
-
-    return completion

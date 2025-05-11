@@ -12,7 +12,7 @@ def mkConfig():
     homePath = system.getHomePath()
     logPath = system.getLogPath()
 
-    internet.getParentCFG()
+    #internet.fetchFTP(configFileP, "parent.yaml")
 
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
