@@ -12,3 +12,4 @@ config/local.yaml
 /tmp/
 /source/core/__pycache__
 .venv/*
+source/core/
