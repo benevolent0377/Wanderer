@@ -57,6 +57,9 @@ def update():
     data = requests.get(coreURL)
     data = data.json()
 
+    if not os.path.isdir(corePATH):
+        os.mkdir(corePATH)
+
     sortedContent = {}
 
     for item in data:
@@ -65,14 +68,15 @@ def update():
     altered = False
 
     for fileName, URL in sortedContent.items():
-
-        try:
-            outputArray = fileRead(corePATH+ fileName)
+        if os.path.isfile(corePATH + fileName):
+            outputArray = fileRead(corePATH + fileName)
             outputString = ""
             for line in outputArray:
                 outputString += line
-        except:
+            fileExists = True
+        else:
             outputString = ""
+            fileExists = False
 
         outputString = outputString.encode()
 
@@ -80,7 +84,9 @@ def update():
         remotemd5 = hashlib.md5(requests.get(URL).content).hexdigest()
 
         if localmd5 != remotemd5:
-            rmFile(corePATH + fileName)
+            #print(localmd5, remotemd5)
+            if fileExists:
+                rmFile(corePATH + fileName)
             mkFile(corePATH + fileName)
             fileWrite(requests.get(URL).text, corePATH + fileName, overwrite=True)
             altered = True
@@ -172,6 +178,5 @@ def fileRead(File):
 
 def get():
     print("Checking for updates.")
-    if selfUpdate() or update():
-        print("Program files have been updated. Please restart the program.")
-        exit()
+    if update():
+        print("Successfully updated core files.")

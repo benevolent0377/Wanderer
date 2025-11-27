@@ -5,10 +5,10 @@ downloads/
 .venv/lib/
 .venv/lib64/
 .venv/include/
-source/core/__pychache__
+source/update/__pycache__
 source/__pycache__
 source/lib/__pycache__
 config/local.yaml
 /tmp/
-/source/core/__pycache__
 .venv/*
+source/core/
