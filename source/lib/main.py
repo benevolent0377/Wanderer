@@ -1,12 +1,16 @@
 from source.core import system, cmd, IO
 import sys
 from . import banner, files, args
-from source.update import Ucore as core
-from source.update import Ulib as lib
+from source.update import Ulib as libget
+
+devEnabled = True
 
 def run():
 
-    core.get()
+    global devEnabled
+
+    if not devEnabled:
+        libget.get("wanderer")
 
     system.init(["config", "data", "log", "/tmp", "ex", "downloads"], [], True)
 

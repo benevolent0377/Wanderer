@@ -1,3 +1,3 @@
-from source.lib import main
+from source.lib import prerun
 # runs the main function
-main.run()
+prerun.main()
