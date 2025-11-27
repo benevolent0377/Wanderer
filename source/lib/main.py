@@ -6,11 +6,11 @@ from source.update import Ulib as lib
 
 def run():
 
-    core.get()
+ #   core.get()
 
     system.init(["config", "data", "log", "/tmp", "ex", "downloads"], [], True)
 
-    files.mkConfig()
+  #  files.mkConfig()
 
     lib.get("wanderer")
 

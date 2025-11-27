@@ -1,4 +1,4 @@
-from . import IO, system
+from source.core import IO, system
 import os
 
 data = []

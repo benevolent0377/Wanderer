@@ -33,14 +33,14 @@ def update(projName):
     altered = False
     for fileName, URL in projectDataParsed.items():
 
-        if IO.fileRead(localPATH + fileName):
-	   
-	        outputArray = IO.fileRead(localPATH + fileName)
+        try:
+            outputArray = IO.fileRead(localPATH + fileName)
             outputString = ""
             for line in outputArray:
                 outputString += line
-	    else:
-	        outputString = ""
+            
+        except:
+                outputString = ""
         
         outputString = outputString.encode()
 

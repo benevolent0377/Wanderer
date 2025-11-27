@@ -1,12 +1,6 @@
 import socket
 import ftplib
-import requests
-from . import IO, log
-
-# a file for all the HTTP and HTTPS functions
-hostName = "calithos.in"
-usr = "wanderer@calithos.in"
-pwd = "USYuQPD41"
+from source.core import log, IO
 
 def ping(host="8.8.8.8", port=53, timeout=10):
     """
@@ -22,7 +16,7 @@ def ping(host="8.8.8.8", port=53, timeout=10):
         log.log(ex, "err")
         return False
 
-def fetchFTP(localFile, remoteFile, timeout=45):
+def fetchFTP(hostName, usr, pwd, localFile, remoteFile, timeout=45):
     IO.say("Establishing FTP connection...\n")
     with ftplib.FTP(hostName, timeout=timeout) as ftp:
         ftp.login(user=usr, passwd=pwd)
@@ -34,7 +28,7 @@ def fetchFTP(localFile, remoteFile, timeout=45):
             IO.say("Done.")
 
 
-def postFTP(localFile, remoteFile, timeout=45, isTmp=False, isYaml=False, keyword=""):
+def postFTP(hostName, usr, pwd, localFile, remoteFile, timeout=45, isTmp=False, isYaml=False, keyword=""):
     with ftplib.FTP(hostName, timeout=timeout) as ftp:
         ftp.login(user=usr, passwd=pwd)
         log.log(hostName, "ftpconnect", usr)
@@ -62,23 +56,3 @@ def postFTP(localFile, remoteFile, timeout=45, isTmp=False, isYaml=False, keywor
 
                 ftp.storlines(f"STOR {remoteFile}", file)
                 log.log(remoteFile, "ftpD", hostName)
-
-def HTTPget(host, returnType='bytes', timeout=45):
-
-    data = requests.get(host)
-
-    match returnType:
-        case 'bytes':
-            return data.content
-        case 'text':
-            return data.text
-        case 'head':
-            return data.headers
-        case 'json':
-            return data.json
-        case 'code':
-            return data.status_code
-        case 'boolean':
-            return data.ok
-
-    print()
