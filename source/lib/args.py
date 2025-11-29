@@ -1,5 +1,6 @@
 from . import internet
-from source.core import IO, log, helper
+from source.core import IO, log
+from source.lib import dialog, helper
 
 # "(http(s)?:\\/\\/)?([a-z0-9]){3,256}\\.([a-z0-9]){2,6}$"
 def exec(varsIn):
