@@ -25,4 +25,4 @@ It will be expected to do the following:
 
 + Index sites and write the data to a file.
 
-The dependecies are currently unknown, but as development furthers, I will list them here.
+The dependecies are currently unknown, but as development continues, I will list them here.
