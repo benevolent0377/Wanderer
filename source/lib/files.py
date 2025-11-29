@@ -17,7 +17,7 @@ def mkConfig():
     if not os.path.isfile(configFileL):
         if IO.mkFile(configFileL):
             elements = ["OS", "CWD", "Home-Directory", "Program-SerialNo", "SendLogs", "Version"]
-            values = [OS, sysPath, homePath, extra.keyGen(24), " ", "1.0.0 Development Test"]
+            values = [OS, sysPath, homePath, extra.keyGen(24), "N/A", "1.0.0 Development Test"]
             IO.yamlWrite(values, elements, configFileL, True)
         else:
             IO.say("Failed to create local configuration file.")
@@ -30,7 +30,7 @@ def mkConfig():
 
 def sendLogs(configFileL):
 
-    if IO.yamlRead(configFileL, "SendLogs").__eq__(' '):
+    if IO.yamlRead(configFileL, "SendLogs").__eq__('N/A'):
         response = IO.say("Would you like to opt into uploading log data? It IS anonymous. DEFAULT is no. (yes/no)", True, syntaxChk=True, synType="internal")
         if response.__eq__("yes") or response.__eq__("y"):
             IO.yamlWrite("True", "SendLogs", configFileL)

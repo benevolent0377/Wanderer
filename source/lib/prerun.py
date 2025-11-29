@@ -1,9 +1,7 @@
-from source.update import Ucore as core
-from source.lib import main as mainFile
-
+from source.update import install
 
 def main():
 
-    core.get()
+    install.main(2)
 
     mainFile.run()

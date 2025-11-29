@@ -6,8 +6,7 @@ from source.update import Ulib as libget
 devEnabled = True
 
 def run():
-
- #   core.get()
+    #hello
     global devEnabled
 
     if not devEnabled:
@@ -15,9 +14,7 @@ def run():
 
     system.init(["config", "data", "log", "/tmp", "ex", "downloads"], [], True)
 
-  #  files.mkConfig()
-
-    lib.get("wanderer")
+    files.mkConfig()
 
     if len(sys.argv) >= 2:  # if command arguments are given
         banner.out()
