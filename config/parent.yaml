@@ -20,6 +20,7 @@ cmdList:
             {name: "-H", takesParams: 0, secondaryName: "--host", helpMsg: "Specifies the site(s) to connect to. Lists are applicable by separating site names with commas AND NO SPACES.[Ex: -H cars.com,trucks.net,pools.me] [EX: -H https://cars.com]"},
             {name: "-t", takesParams: 0, secondaryName: "--timeout", helpMsg: "Set the timeout of the connection. Default is 45 seconds.[EX: -t 60]"},
             {name: "-v", takesParams: 0, secondaryName: "--verbosity", helpMsg: "Determine the amount of text the program outputs. 1 is the lowest and 5 is the highest.[EX: -v 5]"},
-            {name: "-A", takesParams: 0, secondaryName: "--attributes", helpMsg: "Define the pages you want to wander. This function utilizes POST. This command can take a single argument or a list of arguments. Lists are applicable by separating pages with commas AND NO SPACES.[Ex: -A cars,trucks,pools] [EX: -A cars]"},
-            {name: "-pR", takesParams: -1, secondaryName: "--preserve", helpMsg: "Boolean command. Takes no arguments. Preserves cached program data.[EX: -pR] [EX: --preserve]"}
+            {name: "-A", takesParams: 0, secondaryName: "--attributes", helpMsg: "Define the pages you want to wander. This function utilizes POST. This command can take a single argument or a list of arguments. Lists are applicable by separating pages with commas eclosed in quotations. [Ex: -A \"cars, trucks, pools\"] [EX: -A cars]"},
+            {name: "-pR", takesParams: -1, secondaryName: "--preserve", helpMsg: "Boolean command. Takes no arguments. Preserves cached program data.[EX: -pR] [EX: --preserve]"},
+            {name: "-m", takesParams: 0, secondaryName: "--mode", helpMsg: "Select the function/mode to run."}
         ]
